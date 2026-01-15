@@ -1,0 +1,212 @@
+/* ===== Navbar (未展開時：白 -> 透明 漸層 / 無底線) ===== */
+.navbarEriel {
+  position: fixed;  /* ✅ 完全不固定 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  height: 64px;
+  display: flex;
+  align-items: center;
+
+  /* ✅ 不要底線：不要 ::after 就好（這裡不寫） */
+  box-shadow: none;
+
+  /* ✅ 未展開：由上到下全白漸層到全透明 */
+background: linear-gradient(
+  to bottom,
+  rgba(255, 255, 255, 0.95) 0%,
+  rgba(255, 255, 255, 0.7) 35%,
+  rgba(255, 255, 255, 0.35) 65%,
+  rgba(255, 255, 255, 0) 100%
+) !important;
+background-color: transparent !important;
+
+  /* ✅ 往下滑：變全白 */
+  &.is-scrolled {
+    background: rgba(255, 255, 255, 1) !important;
+    background-color: rgba(255, 255, 255, 1) !important;
+    /* 你如果想要更像「貼住白底」的感覺，可加一點陰影 */
+    /* box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06); */
+  }
+
+  /* ✅ 選單展開：透明（維持你原本需求） */
+  &.is-open {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none;
+  }
+}
+
+/* 中間 Logo 真置中 */
+.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-logoImg {
+  height: 26px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ✅ 漢堡：要有 margin-left */
+.hamburger {
+  width: 40px;
+  height: 40px;
+  margin-left: 28px; /* 你要的 margin-left */
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+
+  span {
+    width: 18px;
+    height: 2px;
+    background: #111;
+    transition: 0.25s ease;
+  }
+
+  &.active {
+    span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  }
+}
+
+/* 右側空位（不用搜尋但保持視覺平衡） */
+.navbar-rightSpacer {
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  margin-right: 28px;
+}
+
+/* ===== Overlay (展開後：整塊白色半透明 / 不漸層) ===== */
+.menuOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+
+  /* ✅ 展開後：整塊白色半透明，不要漸層 */
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(8px);
+
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Overlay 上方置中關閉漢堡 */
+.overlayHamburger {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+
+  span {
+    width: 18px;
+    height: 2px;
+    background: #111;
+    transition: 0.25s ease;
+  }
+
+  &.active {
+    span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  }
+}
+
+/* 選單文字置中（像你截圖） */
+.menuPanel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+
+  a {
+    text-decoration: none;
+    color: #111;
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    font-weight: 300;
+  }
+}
+
+/* ===== RWD ===== */
+@media (max-width: 768px) {
+  .navbarEriel {
+    height: 60px;
+  }
+  .hamburger {
+    margin-left: 18px;
+  }
+  .navbar-rightSpacer {
+    margin-right: 18px;
+  }
+  .navbar-logoImg {
+    height: 24px;
+  }
+  .menuPanel a {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hamburger {
+    margin-left: 14px;
+  }
+  .navbar-rightSpacer {
+    margin-right: 14px;
+  }
+}
+.pageWithFixedNavbar {
+  padding-top: 64px;
+}
+
+@media (max-width: 768px) {
+  .pageWithFixedNavbar {
+    padding-top: 60px;
+  }
+}

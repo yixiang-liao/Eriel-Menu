@@ -1,0 +1,29 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+*{
+    // margin: 0;
+    // padding: 0;
+    font-family: "Playfair Display", "Noto Sans TC", serif, sans-serif;
+}
+// :lang(zh),
+// :lang(zh-TW),
+// :lang(zh-Hant) {
+//   font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+// }
+
+// :lang(en) {
+//   font-family: "Playfair Display", serif;
+// }
+.app {
+  overflow: visible;
+}
+
+@import './components/_Navbar';
+@import './components/_Footer';
+@import "./components/BackToTopButton";
+
+@import './pages/_HomePage';
+@import './pages/_InnerPage';
+
+@import './layouts/_CreamBox';

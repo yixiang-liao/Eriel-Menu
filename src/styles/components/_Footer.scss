@@ -1,0 +1,42 @@
+.footer {
+  background-color: rgb(38, 37, 37);
+  min-height: 10vh;
+  width: 100%;
+  .head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 20px;
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      img {
+        width: 150px;
+        height: auto;
+        object-fit: contain;
+      }
+    }
+  }
+  .content {
+    color: rgb(183, 183, 183);
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    p{
+        margin: 10px 0;
+    }
+  }
+  .copyright {
+    text-align: center;
+    color: rgb(183, 183, 183);
+    margin-top: 10px;
+    padding-bottom: 30px;
+    letter-spacing: 1.5px;
+    font-size: 0.8rem;
+    
+  }
+}

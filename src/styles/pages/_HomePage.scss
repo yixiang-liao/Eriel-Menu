@@ -1,0 +1,52 @@
+.home-page {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+
+  /* ✅ 如果你要下面還能 scroll，就不要 hidden
+     如果你一定要 hidden，可以先留著，但內容要確保在畫面內 */
+  overflow: hidden;
+
+  .header {
+    position: absolute;
+    inset: 0 0 auto 0; /* top:0 left:0 right:0 */
+    height: 30vh;
+    z-index: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+  }
+
+  /* ✅ 讓內容在背景上面 + 往下推開 header */
+  .content {
+    position: relative;
+    z-index: 1;
+
+    /* 讓內容不被 header 擋住：推到 30vh 下面 */
+    padding-top: 33vh;
+
+    /* 再加一點呼吸感 */
+    padding-left: 28px;
+    padding-right: 28px;
+    padding-bottom: 3vh;
+
+    h1 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 3px;
+      text-align: center;
+      padding-bottom: 3vh;
+    }
+    .ice-cream-menu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      justify-items: center; /* 卡片置中 */
+    }
+  }
+}
