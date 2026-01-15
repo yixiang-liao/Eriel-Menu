@@ -34,7 +34,7 @@ const InnerPage = () => {
     const load = async () => {
       try {
         setLoading(true);
-        const res = await fetch("/data.csv", { cache: "no-store" });
+        const res = await fetch("./data.csv", { cache: "no-store" });
         if (!res.ok) throw new Error(`Failed to load CSV: ${res.status}`);
         const text = await res.text();
         const rows = parseCSV(text);
