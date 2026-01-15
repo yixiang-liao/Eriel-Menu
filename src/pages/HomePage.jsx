@@ -30,7 +30,7 @@ const HomePage = () => {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch("/data.csv", { cache: "no-store" });
+        const res = await fetch("./data.csv", { cache: "no-store" });
         if (!res.ok) throw new Error(`Failed to load CSV: ${res.status}`);
         const text = await res.text();
         const rows = parseCSV(text);
@@ -59,7 +59,7 @@ const HomePage = () => {
     <div className="home-page">
       <div className="header">
         {/* 建議改成 /light_board.png (放 public) */}
-        <img src="/light_board.png" alt="light board" />
+        <img src="./light_board.png" alt="light board" />
       </div>
 
       <div className="content">

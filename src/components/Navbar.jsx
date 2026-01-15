@@ -40,7 +40,7 @@ const Navbar = () => {
         <div className="navbar-center">
           <Link to="/" onClick={() => setOpen(false)} className="navbar-logoLink">
             <img
-              src="/logo/Eriel.logo_black.png"
+              src="./logo/Eriel.logo_black.png"
               alt="Eriel"
               className="navbar-logoImg"
             />
