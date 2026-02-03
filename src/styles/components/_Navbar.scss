@@ -1,8 +1,8 @@
 /* ===== Navbar (未展開時：白 -> 透明 漸層 / 無底線) ===== */
 .navbarEriel {
-  position: fixed;  /* ✅ 完全不固定 */
-  top: 0;
-  left: 0;
+  position: relative;  /* ✅ 完全不固定 */
+  // top: 0;
+  // left: 0;
   width: 100%;
   z-index: 1000;
 
@@ -201,12 +201,12 @@ background-color: transparent !important;
     margin-right: 14px;
   }
 }
-.pageWithFixedNavbar {
-  padding-top: 64px;
-}
+// .pageWithFixedNavbar {
+//   padding-top: 64px;
+// }
 
 @media (max-width: 768px) {
-  .pageWithFixedNavbar {
-    padding-top: 60px;
-  }
+  // .pageWithFixedNavbar {
+  //   padding-top: 60px;
+  // }
 }

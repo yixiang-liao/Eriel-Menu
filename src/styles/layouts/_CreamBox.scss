@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
   .image-container {
     width: 110px;
     height: 110px;
@@ -11,6 +12,7 @@
     margin-bottom: 10px;
     position: relative;
     border-radius: 20px;
+
     img {
       width: 100%;
       height: 100%;
@@ -26,23 +28,76 @@
       opacity: 0;
     }
   }
+
   p {
     font-size: 0.9rem;
     letter-spacing: 2px;
+    text-align: center;
   }
 
   &:hover {
     .img-default {
       opacity: 0;
     }
-
     .img-hover {
       opacity: 1;
     }
   }
 }
-@media (max-width:  375px) {
+
+/* ✅ 小手機 */
+@media (max-width: 375px) {
+  .cream-box {
+    .image-container {
+      width: 100px;
+      height: 100px;
+      border-radius: 16px;
+    }
+    p {
+      font-size: 0.8rem;
+    }
+  }
+
   .ice-cream-menu {
     grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ✅ 一般手機～小平板 */
+@media (min-width: 376px) and (max-width: 768px) {
+  .cream-box {
+    .image-container {
+      width: 110px;
+      height: 110px;
+      border-radius: 20px;
+    }
+  }
+}
+
+/* ✅ 平板～筆電 */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .cream-box {
+    .image-container {
+      width: 200px;
+      height: 200px;
+      border-radius: 24px;
+    }
+    p {
+      font-size: 0.95rem;
+    }
+  }
+}
+
+/* ✅ 大桌機 */
+@media (min-width: 1201px) {
+  .cream-box {
+    .image-container {
+      width: 170px;
+      height: 170px;
+      border-radius: 28px;
+    }
+    p {
+      font-size: 1rem;
+    }
   }
 }

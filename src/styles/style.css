@@ -10,9 +10,7 @@
 
 /* ===== Navbar (未展開時：白 -> 透明 漸層 / 無底線) ===== */
 .navbarEriel {
-  position: fixed; /* ✅ 完全不固定 */
-  top: 0;
-  left: 0;
+  position: relative; /* ✅ 完全不固定 */
   width: 100%;
   z-index: 1000;
   height: 64px;
@@ -186,15 +184,6 @@
     margin-right: 14px;
   }
 }
-.pageWithFixedNavbar {
-  padding-top: 64px;
-}
-
-@media (max-width: 768px) {
-  .pageWithFixedNavbar {
-    padding-top: 60px;
-  }
-}
 .footer {
   background-color: rgb(38, 37, 37);
   min-height: 10vh;
@@ -266,37 +255,34 @@
 
 .home-page {
   position: relative;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
-  /* ✅ 如果你要下面還能 scroll，就不要 hidden
-     如果你一定要 hidden，可以先留著，但內容要確保在畫面內 */
-  overflow: hidden;
-  /* ✅ 讓內容在背景上面 + 往下推開 header */
+  /* ✅ 要能往下滑就不要 hidden */
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Header 變成正常區塊：會自然排在 navbar 下方 */
+  /* Swiper 本體 */
+  /* content 自然接在 header 後面，不用 padding-top 推 */
 }
 .home-page .header {
-  position: absolute;
-  inset: 0 0 auto 0; /* top:0 left:0 right:0 */
+  position: relative; /* ✅ 不要 absolute */
   height: 30vh;
-  z-index: 0;
 }
-.home-page .header img {
+.home-page .homeSwiper {
+  width: 100%;
+  height: 100%;
+}
+.home-page .homeSwiper img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
   display: block;
 }
 .home-page .content {
   position: relative;
   z-index: 1;
-  /* 讓內容不被 header 擋住：推到 30vh 下面 */
-  padding-top: 33vh;
-  /* 再加一點呼吸感 */
-  padding-left: 28px;
-  padding-right: 28px;
-  padding-bottom: 3vh;
+  padding: 24px 28px 3vh;
 }
 .home-page .content h1 {
   margin: 0;
@@ -309,11 +295,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  justify-items: center; /* 卡片置中 */
+  justify-items: center;
 }
 
 .inner-page {
-  margin-top: 6vh;
   margin-left: 14px;
   margin-right: 14px;
   border-top: 1px solid #414141;
@@ -440,6 +425,7 @@
 .cream-box p {
   font-size: 0.9rem;
   letter-spacing: 2px;
+  text-align: center;
 }
 .cream-box:hover .img-default {
   opacity: 0;
@@ -448,8 +434,47 @@
   opacity: 1;
 }
 
+/* ✅ 小手機 */
 @media (max-width: 375px) {
+  .cream-box .image-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 16px;
+  }
+  .cream-box p {
+    font-size: 0.8rem;
+  }
   .ice-cream-menu {
     grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+/* ✅ 一般手機～小平板 */
+@media (min-width: 376px) and (max-width: 768px) {
+  .cream-box .image-container {
+    width: 110px;
+    height: 110px;
+    border-radius: 20px;
+  }
+}
+/* ✅ 平板～筆電 */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .cream-box .image-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 24px;
+  }
+  .cream-box p {
+    font-size: 0.95rem;
+  }
+}
+/* ✅ 大桌機 */
+@media (min-width: 1201px) {
+  .cream-box .image-container {
+    width: 170px;
+    height: 170px;
+    border-radius: 28px;
+  }
+  .cream-box p {
+    font-size: 1rem;
   }
 }/*# sourceMappingURL=style.css.map */

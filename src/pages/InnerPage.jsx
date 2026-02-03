@@ -3,25 +3,14 @@ import { useParams, Link } from "react-router-dom";
 import BackToTopButton from "../components/BackToTopButton";
 import { BsArrowDownCircleFill } from "react-icons/bs";
 
-// ✅ 跟 HomePage 一樣的簡易 CSV parser
-function parseCSV(text) {
-  const lines = text
-    .split("\n")
-    .map((l) => l.trim())
-    .filter(Boolean);
+const INNER_API =
+  "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjtiNuDLG-8fjsjm4nFSfrUzF4e8XEkq7SsPDVuVmWECWWmgsroPIBaLsZjQYsY5FjbRoE3XaCnhWcZuCo-SbbRRREkWYnHlLwUaJU90wcREgIMmlLbkM0ZWB7_sPGSYXIoWw2AUoBMeLgoTEKm1HmFRDdMTMUPjdl9-jluX3CJNm-rlfasLpBLJlsNtlQzQk2ylkUcXTPvozYHEv-Ck7DDneuNedDbsjxeqHjZ1pvNbm95aXP_llIFzLVLItKGOzq3fZLeuGgx49OgpGhURx9UvhB1s2EuaYz1mnyNK4J5AgzEjMQ&lib=MQ72Ki0fvtNorzsYcWks6t3NlG5ygbIsO";
 
-  if (lines.length < 2) return [];
-
-  const headers = lines[0].split(",").map((h) => h.trim());
-
-  return lines.slice(1).map((line) => {
-    const cols = line.split(",").map((c) => c.trim());
-    const obj = {};
-    headers.forEach((h, i) => {
-      obj[h] = cols[i] ?? "";
-    });
-    return obj;
-  });
+function cleanUrl(url) {
+  return String(url ?? "")
+    .trim()
+    .replace(/\\"/g, "")
+    .replace(/"/g, "");
 }
 
 const InnerPage = () => {
@@ -34,31 +23,32 @@ const InnerPage = () => {
     const load = async () => {
       try {
         setLoading(true);
-        const res = await fetch("./data.csv", { cache: "no-store" });
-        if (!res.ok) throw new Error(`Failed to load CSV: ${res.status}`);
-        const text = await res.text();
-        const rows = parseCSV(text);
 
-        // 可選：整理欄位（避免空白、型態問題）
-        const normalized = rows.map((r) => ({
+        const res = await fetch(INNER_API, { cache: "no-store" });
+        if (!res.ok) throw new Error(`Failed to load API: ${res.status}`);
+
+        const rows = await res.json();
+
+        const normalized = (Array.isArray(rows) ? rows : []).map((r) => ({
           ...r,
           id: String(r.id ?? "").trim(),
-          name: (r.name ?? "").trim(),
-          keyword: (r.keyword ?? "").trim(),
-          describe: (r.describe ?? "").trim(),
-          hashtag: (r.hashtag ?? "").trim(),
-          cal: (r.cal ?? "").trim(),
-          cover1: (r.cover1 ?? "").trim(),
-          cover2: (r.cover2 ?? "").trim(),
-          inner1: (r.inner1 ?? "").trim(),
-          inner2: (r.inner2 ?? "").trim(),
-          ingredient: (r.ingredient ?? "").trim(),
+          name: String(r.name ?? "").trim(),
+          keyword: String(r.keyword ?? "").trim(),
+          describe: String(r.describe ?? "").trim(),
+          hashtag: String(r.hashtag ?? "").trim(),
+          cal: String(r.cal ?? "").trim(),
+
+          cover1: cleanUrl(r.cover1),
+          cover2: cleanUrl(r.cover2),
+          inner1: cleanUrl(r.inner1),
+          inner2: cleanUrl(r.inner2),
+          ingredient: cleanUrl(r.ingredient),
         }));
 
         setItems(normalized);
         setErr("");
       } catch (e) {
-        setErr(e.message || "Load CSV failed");
+        setErr(e.message || "Load API failed");
       } finally {
         setLoading(false);
       }
@@ -74,7 +64,7 @@ const InnerPage = () => {
   if (loading) {
     return (
       <div className="inner-page">
-        <div className="content" style={{ paddingTop: 80 }}>
+        <div className="content" >
           <p>Loading...</p>
         </div>
       </div>
@@ -84,8 +74,8 @@ const InnerPage = () => {
   if (err) {
     return (
       <div className="inner-page">
-        <div className="content" style={{ paddingTop: 80 }}>
-          <p style={{ color: "crimson" }}>CSV 載入失敗：{err}</p>
+        <div className="content" >
+          <p style={{ color: "crimson" }}>API 載入失敗：{err}</p>
           <Link to="/">回首頁</Link>
         </div>
       </div>
@@ -95,7 +85,7 @@ const InnerPage = () => {
   if (!item) {
     return (
       <div className="inner-page">
-        <div className="content" style={{ paddingTop: 80 }}>
+        <div className="content" >
           <p>找不到這個品項（id: {id}）</p>
           <Link to="/">回首頁</Link>
         </div>
@@ -136,10 +126,16 @@ const InnerPage = () => {
           </div>
 
           <div className="info-img">
-            {item.inner1 && <img className="kCal-img" src={item.inner2} alt="kCal" />}
-            {item.inner2 && <img className="ingr-img" src={item.ingredient} alt="ingredients" />}
-            {/* 如果你 ingredient 也要顯示，就加這行 */}
-            {/* {item.ingredient && <img className="ingredient-img" src={item.ingredient} alt="ingredient" />} */}
+            {item.inner2 && (
+              <img className="kCal-img" src={item.inner2} alt="kCal" />
+            )}
+            {item.ingredient && (
+              <img
+                className="ingr-img"
+                src={item.ingredient}
+                alt="ingredients"
+              />
+            )}
           </div>
         </div>
       </div>

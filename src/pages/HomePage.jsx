@@ -2,55 +2,82 @@ import React, { useEffect, useMemo, useState } from "react";
 import CreamBox from "../layouts/CreamBox";
 import BackToTopButton from "../components/BackToTopButton";
 
-// ✅ 簡單 CSV 解析（支援基本逗號分隔；若欄位內有逗號/引號會比較麻煩，見下方備註）
-function parseCSV(text) {
-  const lines = text
-    .split("\n")
-    .map((l) => l.trim())
-    .filter(Boolean);
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
-  if (lines.length < 2) return [];
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-  const headers = lines[0].split(",").map((h) => h.trim());
+const DATA_API =
+  "https://script.google.com/macros/s/AKfycbyCLP_t_UWKtYAf_kW2YdO262X6SKbuYn7Shbre7sCr6y_1Ig6_OJ4W8agiRuSFvkkwvA/exec";
 
-  return lines.slice(1).map((line) => {
-    const cols = line.split(",").map((c) => c.trim());
-    const obj = {};
-    headers.forEach((h, i) => {
-      obj[h] = cols[i] ?? "";
-    });
-    return obj;
-  });
+const HEADER_API =
+  "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLh0L3HPUUYgGlu6WL-oZG3H2xxQYx2HU05SY81KXq6W5huE4oBInvUoe2vRRQVx6O08-gOJICMQGbRDxguRwP4HFKBvpn-vvBQ0imOAh7Ayv-mn-KTthCXkjAYGDOP5n3tGzNYHT9aSCz8HTW0jkyvf140r5waaDp-GAiiyWhEvD2ZBfwjZM52hLkLsOy8Qq4CBd7iKHUZPKTmpJenjN3rnVOQrm6sN2Ddz63NZUd3kI7WL0kbWYxkk2zgeJRgjmaA8halx8pVg3ARor9nHhJ6L82UZ3T3Wli28z8H6ha9PoZWlXfc&lib=MQ72Ki0fvtNorzsYcWks6t3NlG5ygbIsO";
+
+// 清掉你資料裡那種多出來的 \" 或 "（避免圖片壞掉）
+function cleanUrl(url) {
+  return String(url ?? "")
+    .trim()
+    .replace(/\\"/g, "") // 移除 \"
+    .replace(/"/g, "");  // 移除 "
 }
 
 const HomePage = () => {
   const [items, setItems] = useState([]);
-  const [err, setErr] = useState("");
+  const [headerImages, setHeaderImages] = useState([]);
 
+  const [errMenu, setErrMenu] = useState("");
+  const [errHeader, setErrHeader] = useState("");
+
+  // 1) 抓 header images
   useEffect(() => {
-    const load = async () => {
+    const loadHeader = async () => {
       try {
-        const res = await fetch("./data.csv", { cache: "no-store" });
-        if (!res.ok) throw new Error(`Failed to load CSV: ${res.status}`);
-        const text = await res.text();
-        const rows = parseCSV(text);
+        const res = await fetch(HEADER_API, { cache: "no-store" });
+        if (!res.ok) throw new Error(`Header API error: ${res.status}`);
+
+        const rows = await res.json();
+        const normalized = (Array.isArray(rows) ? rows : []).map((r) => ({
+          id: String(r.id ?? "").trim(),
+          src: cleanUrl(r.img),
+          alt: String(r.alt ?? "").trim() || "header image",
+        }));
+
+        setHeaderImages(normalized.filter((x) => x.id && x.src));
+      } catch (e) {
+        setErrHeader(e.message || "Load header failed");
+      }
+    };
+
+    loadHeader();
+  }, []);
+
+  // 2) 抓 menu items
+  useEffect(() => {
+    const loadMenu = async () => {
+      try {
+        const res = await fetch(DATA_API, { cache: "no-store" });
+        if (!res.ok) throw new Error(`Menu API error: ${res.status}`);
+
+        const rows = await res.json();
 
         // 你可以在這裡做一點欄位整理（例如 id 轉字串、空白處理）
-        const normalized = rows.map((r) => ({
+        const normalized = (Array.isArray(rows) ? rows : []).map((r) => ({
           ...r,
           id: String(r.id ?? "").trim(),
-          name: (r.name ?? "").trim(),
-          cover1: (r.cover1 ?? "").trim(),
-          cover2: (r.cover2 ?? "").trim(),
+          name: String(r.name ?? "").trim(),
+          cover1: cleanUrl(r.cover1),
+          cover2: cleanUrl(r.cover2),
         }));
 
         setItems(normalized.filter((x) => x.id && x.name));
       } catch (e) {
-        setErr(e.message || "Load CSV failed");
+        setErrMenu(e.message || "Load menu failed");
       }
     };
 
-    load();
+    loadMenu();
   }, []);
 
   const content = useMemo(() => items, [items]);
@@ -58,16 +85,39 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <div className="header">
-        {/* 建議改成 /light_board.png (放 public) */}
-        <img src="./light_board.png" alt="light board" />
+        {errHeader && (
+          <p style={{ color: "crimson", margin: "8px 0" }}>
+            Header API 載入失敗：{errHeader}
+          </p>
+        )}
+
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          loop
+          speed={700}
+          className="homeSwiper"
+        >
+          {headerImages.map((img) => (
+            <SwiperSlide key={img.id}>
+              <img src={img.src} alt={img.alt} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
 
       <div className="content">
         <h1>Explore Different Flavor</h1>
 
-        {err && (
+        {errMenu && (
           <p style={{ color: "crimson" }}>
-            CSV 載入失敗：{err}（請確認 public/data.csv 是否存在）
+            Menu API 載入失敗：{errMenu}
           </p>
         )}
 
