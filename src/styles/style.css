@@ -263,6 +263,8 @@
   /* Header 變成正常區塊：會自然排在 navbar 下方 */
   /* Swiper 本體 */
   /* content 自然接在 header 後面，不用 padding-top 推 */
+  /* Header loading block */
+  /* Menu skeleton card */
 }
 .home-page .header {
   position: relative; /* ✅ 不要 absolute */
@@ -297,7 +299,94 @@
   gap: 10px;
   justify-items: center;
 }
+.home-page .header-skeleton {
+  width: 100%;
+  height: 100%;
+  border-radius: 0px;
+  background: #e9e9e9;
+  animation: breathe 1.4s ease-in-out infinite;
+}
+.home-page .cream-skeleton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.home-page .cream-skeleton__img {
+  width: 110px;
+  height: 110px;
+  border-radius: 20px;
+  background: #e9e9e9;
+  animation: breathe 1.4s ease-in-out infinite;
+}
+.home-page .cream-skeleton__text {
+  margin-top: 10px;
+  width: 70px;
+  height: 12px;
+  border-radius: 999px;
+  background: #e9e9e9;
+  animation: breathe 1.4s ease-in-out infinite;
+}
+.home-page .menu-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 0px 0 50px;
+  flex-wrap: wrap;
+}
+.home-page .menu-filter span {
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #f2f2f2;
+  color: #555;
+  transition: all 0.2s ease;
+}
+.home-page .menu-filter span:hover {
+  background: #e6e6e6;
+}
+.home-page .menu-filter span.active {
+  background: #111;
+  color: #fff;
+}
 
+@keyframes breathe {
+  0% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0.55;
+  }
+}
+/* ✅ 小手機 */
+@media (max-width: 375px) {
+  .cream-skeleton__img {
+    width: 100px;
+    height: 100px;
+    border-radius: 16px;
+  }
+}
+/* ✅ 平板～筆電 */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .cream-skeleton__img {
+    width: 200px;
+    height: 200px;
+    border-radius: 24px;
+  }
+}
+/* ✅ 大桌機 */
+@media (min-width: 1201px) {
+  .cream-skeleton__img {
+    width: 170px;
+    height: 170px;
+    border-radius: 28px;
+  }
+}
 .inner-page {
   margin-left: 14px;
   margin-right: 14px;
@@ -305,6 +394,13 @@
   min-height: 80vh;
   max-width: 100%;
   font-family: "Noto Sans TC";
+  /* 通用 skeleton */
+  /* Header 左圖 */
+  /* 右邊文字 */
+  /* bottom 小行 */
+  /* describe 段落 */
+  /* 中間 icon 圓 */
+  /* 下面兩張圖 */
 }
 .inner-page .content {
   margin-top: 20px;
@@ -391,7 +487,305 @@
   width: 300px;
   height: auto;
 }
+@keyframes breathe {
+  0% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0.55;
+  }
+}
+.inner-page .sk {
+  background: #e9e9e9;
+  border-radius: 12px;
+  animation: breathe 1.4s ease-in-out infinite;
+}
+.inner-page .sk-img {
+  width: 200px;
+  height: 200px; /* 先用正方形，視覺更穩 */
+  border-radius: 20px;
+}
+.inner-page .sk-title {
+  width: 180px;
+  height: 22px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.inner-page .sk-subtitle {
+  width: 140px;
+  height: 16px;
+  border-radius: 999px;
+}
+.inner-page .sk-line {
+  width: 140px;
+  height: 14px;
+  border-radius: 999px;
+  margin-top: 10px;
+}
+.inner-page .sk-line--short {
+  width: 100px;
+}
+.inner-page .sk-paragraph {
+  width: 100%;
+  height: 14px;
+  border-radius: 999px;
+  margin: 10px 0;
+}
+.inner-page .sk-paragraph--short {
+  width: 70%;
+}
+.inner-page .sk-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  margin: 0 auto 10px;
+}
+.inner-page .sk-center-title {
+  width: 220px;
+  height: 18px;
+  border-radius: 999px;
+  margin: 0 auto;
+}
+.inner-page .sk-figure {
+  width: 300px;
+  height: 180px;
+  border-radius: 18px;
+}
 
+/* ✅ 平板～筆電 */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .inner-header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .inner-header .inner-head {
+    gap: 50px !important;
+  }
+  .describe {
+    width: 70% !important;
+    display: flex;
+    justify-content: center;
+  }
+  .describeA {
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+  }
+}
+/* ✅ 平板～筆電 */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .sk-img {
+    width: 220px;
+    height: 220px;
+  }
+  .sk-figure {
+    width: 340px;
+    height: 200px;
+  }
+}
+.about-page {
+  margin-left: 14px;
+  margin-right: 14px;
+  border-top: 1px solid #414141;
+  min-height: 80vh;
+  max-width: 100%;
+  font-family: "Noto Sans TC";
+}
+.about-page .about-title {
+  text-align: center;
+  margin-top: 30px;
+  letter-spacing: 5px;
+  font-size: 1.8rem;
+}
+.about-page .about-header {
+  width: 80%;
+  margin: 30px auto;
+}
+.about-page .about-header img {
+  width: 100%;
+  height: auto;
+  border-radius: 30px;
+}
+.about-page .about-content {
+  width: 80%;
+  margin: 30px auto;
+  line-height: 1.8;
+  letter-spacing: 3px;
+  font-size: 1rem;
+  text-align: justify;
+}
+.about-page .about-content p {
+  margin: 5px 0;
+}
+.about-page .about-content .eng {
+  letter-spacing: 1px !important;
+}
+
+.contact-page {
+  min-height: 80vh;
+  max-width: 100%;
+  padding: 56px 18px 64px;
+  border-top: 1px solid #414141;
+  font-family: "Noto Sans TC", sans-serif;
+  color: #1f1f1f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 背景做一點點層次，不會太花 */
+  background: radial-gradient(900px 400px at 50% -50px, rgba(0, 0, 0, 0.04), transparent 70%), #fff;
+  /* 主要卡片容器 */
+  /* 小區塊標題 */
+  /* 分隔線 */
+  /* 底部小提示 */
+}
+.contact-page .page-title {
+  margin: 0 0 10px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #2b2b2b;
+}
+.contact-page .page-subtitle {
+  margin: 0 0 26px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #6a6a6a;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 520px;
+}
+.contact-page .contact-card {
+  width: min(680px, 100%);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 22px;
+  padding: 26px 22px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.06);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.contact-page .section-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #3a3a3a;
+  text-align: left;
+}
+.contact-page .divider {
+  height: 1px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.06);
+}
+.contact-page .contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.contact-page .contact-list li {
+  margin: 0;
+}
+.contact-page .contact-list a,
+.contact-page .contact-list .contact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: #fafafa;
+  text-decoration: none;
+  color: #2c2c2c;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+.contact-page .contact-list a:hover,
+.contact-page .contact-list .contact-row:hover {
+  transform: translateY(-2px);
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+.contact-page .contact-list .icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.06);
+  flex: 0 0 auto;
+}
+.contact-page .contact-list .icon {
+  font-size: 18px;
+  color: #2b2b2b;
+}
+.contact-page .contact-list .text-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  line-height: 1.25;
+  gap: 4px;
+  min-width: 0;
+}
+.contact-page .contact-list .label {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #6a6a6a;
+}
+.contact-page .contact-list .value {
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  color: #1f1f1f;
+  word-break: break-word;
+}
+.contact-page .hint {
+  margin: 18px 0 0;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  color: #7a7a7a;
+  text-align: center;
+}
+
+/* RWD */
+@media (max-width: 768px) {
+  .contact-page {
+    padding: 42px 14px 56px;
+  }
+  .contact-page .page-title {
+    font-size: 24px;
+  }
+  .contact-page .contact-card {
+    border-radius: 18px;
+    padding: 20px 16px;
+  }
+  .contact-page .contact-list {
+    gap: 10px;
+  }
+  .contact-page .contact-list a,
+  .contact-page .contact-list .contact-row {
+    padding: 11px 12px;
+    border-radius: 14px;
+  }
+  .contact-page .contact-list .icon-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: 13px;
+  }
+  .contact-page .contact-list .value {
+    font-size: 13px;
+  }
+}
 .cream-box {
   display: flex;
   flex-direction: column;
@@ -449,7 +843,7 @@
   }
 }
 /* ✅ 一般手機～小平板 */
-@media (min-width: 376px) and (max-width: 768px) {
+@media (min-width: 376px) and (max-width: 767px) {
   .cream-box .image-container {
     width: 110px;
     height: 110px;
@@ -457,7 +851,7 @@
   }
 }
 /* ✅ 平板～筆電 */
-@media (min-width: 769px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   .cream-box .image-container {
     width: 200px;
     height: 200px;

@@ -62,14 +62,61 @@ const InnerPage = () => {
   }, [items, id]);
 
   if (loading) {
-    return (
-      <div className="inner-page">
-        <div className="content" >
-          <p>Loading...</p>
+  return (
+    <div className="inner-page">
+      <div className="content">
+        {/* Header skeleton */}
+        <div className="inner-header">
+          <div className="inner-head">
+            <div className="img">
+              <div className="sk sk-img" />
+            </div>
+
+            <div className="text">
+              <div className="top">
+                <div className="sk sk-title" />
+                <div className="sk sk-subtitle" />
+              </div>
+
+              <div className="bottom">
+                <div className="sk sk-line" />
+                <div className="sk sk-line sk-line--short" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Describe skeleton */}
+        <div className="inner-body">
+          <div className="describeA">
+            <div className="describe">
+              <div className="sk sk-paragraph" />
+              <div className="sk sk-paragraph" />
+              <div className="sk sk-paragraph sk-paragraph--short" />
+            </div>
+          </div>
+
+          {/* More-info skeleton */}
+          <div className="more-info">
+            <div className="btm-icon">
+              <div className="sk sk-circle" />
+            </div>
+            <div className="sk sk-center-title" />
+          </div>
+
+          {/* Images skeleton */}
+          <div className="info-img">
+            <div className="sk sk-figure" />
+            <div className="sk sk-figure" />
+          </div>
         </div>
       </div>
-    );
-  }
+
+      <BackToTopButton />
+    </div>
+  );
+}
+
 
   if (err) {
     return (
@@ -96,6 +143,7 @@ const InnerPage = () => {
   return (
     <div className="inner-page">
       <div className="content">
+        <div className="inner-header">
         <div className="inner-head">
           <div className="img">
             <img src={item.inner1} alt={item.name} />
@@ -107,17 +155,18 @@ const InnerPage = () => {
               <h2>{item.keyword}</h2>
             </div>
             <div className="bottom">
-              <p className="cal">{item.cal}</p>
+              <p className="cal">{item.cal} kCal</p>
               <p className="hashtag">{item.hashtag}</p>
             </div>
           </div>
         </div>
-
+</div>
         <div className="inner-body">
+          <div className="describeA">
           <div className="describe">
             <p>{item.describe}</p>
           </div>
-
+</div>
           <div className="more-info">
             <div className="btm-icon">
               <BsArrowDownCircleFill />

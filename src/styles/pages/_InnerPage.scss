@@ -53,6 +53,7 @@
         }
       }
     }
+    
     .inner-body {
       .describe {
         margin: 30px 0;
@@ -100,5 +101,120 @@
         }
       }
     }
+  }
+  @keyframes breathe {
+  0% { opacity: 0.55; }
+  50% { opacity: 0.95; }
+  100% { opacity: 0.55; }
+}
+
+/* 通用 skeleton */
+.sk {
+  background: #e9e9e9;
+  border-radius: 12px;
+  animation: breathe 1.4s ease-in-out infinite;
+}
+
+/* Header 左圖 */
+.sk-img {
+  width: 200px;
+  height: 200px; /* 先用正方形，視覺更穩 */
+  border-radius: 20px;
+}
+
+/* 右邊文字 */
+.sk-title {
+  width: 180px;
+  height: 22px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.sk-subtitle {
+  width: 140px;
+  height: 16px;
+  border-radius: 999px;
+}
+
+/* bottom 小行 */
+.sk-line {
+  width: 140px;
+  height: 14px;
+  border-radius: 999px;
+  margin-top: 10px;
+}
+.sk-line--short {
+  width: 100px;
+}
+
+/* describe 段落 */
+.sk-paragraph {
+  width: 100%;
+  height: 14px;
+  border-radius: 999px;
+  margin: 10px 0;
+}
+.sk-paragraph--short {
+  width: 70%;
+}
+
+/* 中間 icon 圓 */
+.sk-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  margin: 0 auto 10px;
+}
+
+.sk-center-title {
+  width: 220px;
+  height: 18px;
+  border-radius: 999px;
+  margin: 0 auto;
+}
+
+/* 下面兩張圖 */
+.sk-figure {
+  width: 300px;
+  height: 180px;
+  border-radius: 18px;
+}
+
+}
+@media (min-width: 376px) and (max-width: 768px) {
+}
+
+/* ✅ 平板～筆電 */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .inner-header{
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      .inner-head{
+        gap: 50px !important;
+      }
+    }
+        .describe{
+          width: 70% !important;
+          display: flex;
+          justify-content: center;
+
+        }
+        .describeA{
+          width: 100% !important;
+          display: flex;
+          justify-content: center;
+        }
+}
+/* ✅ 平板～筆電 */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .sk-img {
+    width: 220px;
+    height: 220px;
+  }
+
+  .sk-figure {
+    width: 340px;
+    height: 200px;
   }
 }
