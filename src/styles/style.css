@@ -256,7 +256,7 @@
 .home-page {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
   /* ✅ 要能往下滑就不要 hidden */
   overflow-x: hidden;
   overflow-y: auto;
@@ -599,7 +599,8 @@
   text-align: center;
   margin-top: 30px;
   letter-spacing: 5px;
-  font-size: 1.8rem;
+  font-size: 1.8rem !important;
+  color: #2b2b2b;
 }
 .about-page .about-header {
   width: 80%;
@@ -636,7 +637,6 @@
   flex-direction: column;
   align-items: center;
   /* 背景做一點點層次，不會太花 */
-  background: radial-gradient(900px 400px at 50% -50px, rgba(0, 0, 0, 0.04), transparent 70%), #fff;
   /* 主要卡片容器 */
   /* 小區塊標題 */
   /* 分隔線 */
@@ -644,14 +644,13 @@
 }
 .contact-page .page-title {
   margin: 0 0 10px;
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-size: 1.8rem !important;
+  letter-spacing: 5px;
   color: #2b2b2b;
 }
 .contact-page .page-subtitle {
   margin: 0 0 26px;
-  font-size: 14px;
+  font-size: 1.2rem;
   letter-spacing: 1px;
   color: #6a6a6a;
   line-height: 1.7;
@@ -673,11 +672,11 @@
 }
 .contact-page .section-title {
   margin: 0;
-  font-size: 13px;
+  font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 1.5px;
   color: #3a3a3a;
-  text-align: left;
+  text-align: center;
 }
 .contact-page .divider {
   height: 1px;
@@ -726,7 +725,7 @@
   flex: 0 0 auto;
 }
 .contact-page .contact-list .icon {
-  font-size: 18px;
+  font-size: 1.2rem;
   color: #2b2b2b;
 }
 .contact-page .contact-list .text-wrap {
@@ -739,19 +738,19 @@
   min-width: 0;
 }
 .contact-page .contact-list .label {
-  font-size: 12px;
+  font-size: 1.2rem;
   letter-spacing: 1px;
   color: #6a6a6a;
 }
 .contact-page .contact-list .value {
-  font-size: 14px;
+  font-size: 1.2rem;
   letter-spacing: 0.8px;
   color: #1f1f1f;
   word-break: break-word;
 }
 .contact-page .hint {
   margin: 18px 0 0;
-  font-size: 12px;
+  font-size: 1rem;
   letter-spacing: 0.8px;
   color: #7a7a7a;
   text-align: center;
@@ -763,7 +762,7 @@
     padding: 42px 14px 56px;
   }
   .contact-page .page-title {
-    font-size: 24px;
+    font-size: 1.2rem;
   }
   .contact-page .contact-card {
     border-radius: 18px;
@@ -783,9 +782,37 @@
     border-radius: 13px;
   }
   .contact-page .contact-list .value {
-    font-size: 13px;
+    font-size: 1rem;
   }
 }
+.notfound-pageA {
+  min-height: 75vh;
+  max-width: 100%;
+  padding: 56px 18px 64px;
+  border-top: 1px solid #414141;
+  color: #1f1f1f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.notfound-pageA .notfound-titleA {
+  font-size: 10em;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #3c3c3c;
+}
+.notfound-pageA .notfound-subtitleA {
+  font-size: 1.5em;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #6a6a6a;
+  line-height: 1.7;
+  text-align: center;
+  text-decoration: none;
+  max-width: 520px;
+}
+
 .cream-box {
   display: flex;
   flex-direction: column;

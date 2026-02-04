@@ -12,24 +12,23 @@
   align-items: center;
 
   /* 背景做一點點層次，不會太花 */
-  background: radial-gradient(
-      900px 400px at 50% -50px,
-      rgba(0, 0, 0, 0.04),
-      transparent 70%
-    ),
-    #fff;
+  // background: radial-gradient(
+  //     900px 400px at 50% -50px,
+  //     rgba(0, 0, 0, 0.04),
+  //     transparent 70%
+  //   ),
+  //   #fff;
 
   .page-title {
     margin: 0 0 10px;
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: 2px;
+    font-size: 1.8rem !important;
+    letter-spacing: 5px;
     color: #2b2b2b;
   }
 
   .page-subtitle {
     margin: 0 0 26px;
-    font-size: 14px;
+    font-size: 1.2rem;
     letter-spacing: 1px;
     color: #6a6a6a;
     line-height: 1.7;
@@ -56,11 +55,11 @@
   /* 小區塊標題 */
   .section-title {
     margin: 0;
-    font-size: 13px;
+    font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 1.5px;
     color: #3a3a3a;
-    text-align: left;
+    text-align: center;
   }
 
   /* 分隔線 */
@@ -121,7 +120,7 @@
     }
 
     .icon {
-      font-size: 18px;
+      font-size: 1.2rem;
       color: #2b2b2b;
     }
 
@@ -136,13 +135,13 @@
     }
 
     .label {
-      font-size: 12px;
+      font-size: 1.2rem;
       letter-spacing: 1px;
       color: #6a6a6a;
     }
 
     .value {
-      font-size: 14px;
+      font-size: 1.2rem;
       letter-spacing: 0.8px;
       color: #1f1f1f;
       word-break: break-word;
@@ -152,7 +151,7 @@
   /* 底部小提示 */
   .hint {
     margin: 18px 0 0;
-    font-size: 12px;
+      font-size: 1rem;
     letter-spacing: 0.8px;
     color: #7a7a7a;
     text-align: center;
@@ -165,7 +164,7 @@
     padding: 42px 14px 56px;
 
     .page-title {
-      font-size: 24px;
+      font-size: 1.2rem;
     }
 
     .contact-card {
@@ -189,7 +188,7 @@
       }
 
       .value {
-        font-size: 13px;
+      font-size: 1rem;
       }
     }
   }
