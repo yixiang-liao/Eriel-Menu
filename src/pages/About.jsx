@@ -1,9 +1,11 @@
 import React from "react";
 import BackToTopButton from "../components/BackToTopButton";
+import PageTitle from "../services/PageTitle";
 
 const About = () => {
   return (
     <div className="about-page">
+      <PageTitle title="關於我們" />
       <h1 className="about-title">關於我們</h1>
       <div className="about-header">
         <img src="https://i.meee.com.tw/AOw2Mon.jpg" />

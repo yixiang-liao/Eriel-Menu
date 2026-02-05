@@ -53,7 +53,45 @@
         }
       }
     }
-    
+.inner-share {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2rem;
+
+  .share-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    svg {
+      font-size: 20px;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    &.line {
+      color: #444;
+    }
+
+    &.share {
+      color: #444;
+    }
+  }
+}
+
+
     .inner-body {
       .describe {
         margin: 30px 0;

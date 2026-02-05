@@ -1,10 +1,12 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaEnvelope, FaPhone } from "react-icons/fa";
 import { FaThreads } from "react-icons/fa6";
+import PageTitle from "../services/PageTitle";
 
 const Contact = () => {
   return (
     <div className="contact-page">
+      <PageTitle title="聯絡我們" />
       <h1 className="page-title">聯絡我們</h1>
       <p className="page-subtitle">
         我們重視您的意見與反饋。若您有任何問題或合作提案，歡迎隨時與我們聯繫。

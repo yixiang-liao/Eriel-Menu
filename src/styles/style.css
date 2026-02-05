@@ -444,6 +444,38 @@
   margin-bottom: 0 !important;
   color: #686868;
 }
+.inner-page .content .inner-share {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2rem;
+}
+.inner-page .content .inner-share .share-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.inner-page .content .inner-share .share-btn svg {
+  font-size: 20px;
+}
+.inner-page .content .inner-share .share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+.inner-page .content .inner-share .share-btn.line {
+  color: #444;
+}
+.inner-page .content .inner-share .share-btn.share {
+  color: #444;
+}
 .inner-page .content .inner-body .describe {
   margin: 30px 0;
   letter-spacing: 1px;
