@@ -154,7 +154,7 @@ const InnerPage = () => {
       try {
         await navigator.share({
           title: item.name,
-          text: item.keyword,
+          text: "這款冰淇淋超好吃的！推薦給你！",
           url: shareUrl,
         });
       } catch (err) {
